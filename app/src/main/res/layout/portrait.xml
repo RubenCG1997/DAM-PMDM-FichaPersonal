@@ -37,12 +37,12 @@
             android:id="@+id/lbl_info3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="center_horizontal|center_vertical"
             android:layout_marginLeft="50dp"
             android:fontFamily="@font/aclonica"
-            android:textAlignment="viewEnd"
+            android:textAlignment="textStart"
             android:textColor="@color/lbl_info"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -78,9 +78,9 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="50dp"
             android:fontFamily="@font/aclonica"
-            android:textAlignment="viewEnd"
+            android:textAlignment="textStart"
             android:textColor="@color/lbl_info"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -116,9 +116,9 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="50dp"
             android:fontFamily="@font/aclonica"
-            android:textAlignment="viewEnd"
+            android:textAlignment="textStart"
             android:textColor="@color/lbl_info"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -126,7 +126,6 @@
         android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
         android:layout_marginBottom="20dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
@@ -134,8 +133,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/btn_clear"

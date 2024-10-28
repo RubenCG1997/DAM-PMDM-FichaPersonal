@@ -7,4 +7,9 @@
     <string name="titleSC">Select course"</string>
     <string name="OptionSC1">Cancel</string>
     <string name="OptionSC2">Accept</string>
+    <string name="titleMC">Select languages</string>
+    <string name="Option1MC">Cancel</string>
+    <string name="Option2MC">Accept</string>
+    <string name="Optiom3MC">Clear all</string>
+
 </resources>

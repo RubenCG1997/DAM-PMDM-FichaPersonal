@@ -8,4 +8,8 @@
     <string name="titleSC">Seleccione curso</string>
     <string name="OptionSC1">Cancelar</string>
     <string name="OptionSC2">Aceptar</string>
+    <string name="titleMC">Seleccione lenguajes</string>
+    <string name="Option1MC">Cancelar</string>
+    <string name="Option2MC">Aceptar</string>
+    <string name="Optiom3MC">Limpiar</string>
 </resources>
