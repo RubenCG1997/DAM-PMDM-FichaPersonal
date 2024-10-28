@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">DAM-PMDM-FichaPersonal</string>
+    <string name="app_name" translatable="false">DAM-PMDM-FichaPersonal</string>
+    <string name="btn_info1">Name</string>
+    <string name="btn_info2">Course</string>
+    <string name="btn_info3">Languages</string>
+    <string name="btn_clear">New Registration</string>
+    <string name="titleSC">Select course"</string>
+    <string name="OptionSC1">Cancel</string>
+    <string name="OptionSC2">Accept</string>
 </resources>

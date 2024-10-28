@@ -2,59 +2,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ConstraitLayout"
+    android:id="@+id/constraitLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="20dp"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:orientation="horizontal"
-        android:padding="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
-
-        <Button
-            android:id="@+id/btn_info3"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:backgroundTint="@color/btn_info"
-            android:fontFamily="@font/allerta_stencil"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:text="@string/btn_info3"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:cornerRadius="5dp" />
-
-        <TextView
-            android:id="@+id/lbl_info3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="50dp"
-            android:fontFamily="@font/aclonica"
-            android:textAlignment="viewEnd"
-            android:textColor="@color/lbl_info"
-            android:textSize="24sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         android:orientation="horizontal"
-        android:padding="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -62,50 +22,58 @@
             android:id="@+id/btn_info1"
             android:layout_width="150dp"
             android:layout_height="50dp"
+            android:layout_gravity="start"
+            android:layout_marginRight="120dp"
             android:backgroundTint="@color/btn_info"
-            android:fontFamily="@font/allerta_stencil"
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:text="@string/btn_info1"
-            android:textSize="14sp"
             android:textStyle="bold"
             app:cornerRadius="5dp" />
 
         <TextView
-            android:id="@+id/txt_info1"
+            android:id="@+id/lbl_info1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="50dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="120dp"
             android:fontFamily="@font/aclonica"
-            android:textAlignment="viewEnd"
             android:textColor="@color/lbl_info"
             android:textSize="24sp" />
 
+        <Button
+            android:id="@+id/btn_info3"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:backgroundTint="@color/btn_info"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="@string/btn_info3"
+            android:textStyle="bold"
+            app:cornerRadius="5dp" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="20dp"
         android:orientation="horizontal"
-        android:padding="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <Button
             android:id="@+id/btn_info2"
             android:layout_width="150dp"
             android:layout_height="50dp"
+            android:layout_marginRight="120dp"
             android:backgroundTint="@color/btn_info"
-            android:fontFamily="@font/allerta_stencil"
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:text="@string/btn_info2"
-            android:textSize="14sp"
             android:textStyle="bold"
             app:cornerRadius="5dp" />
 
@@ -113,29 +81,32 @@
             android:id="@+id/lbl_info2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="50dp"
+            android:layout_marginRight="120dp"
             android:fontFamily="@font/aclonica"
-            android:textAlignment="viewEnd"
             android:textColor="@color/lbl_info"
             android:textSize="24sp" />
 
+        <TextView
+            android:id="@+id/lbl_info3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/aclonica"
+            android:textColor="@color/lbl_info"
+            android:textSize="24sp" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
-        android:gravity="center_horizontal"
         android:orientation="horizontal"
-        android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
         <Button
             android:id="@+id/btn_clear"
@@ -149,7 +120,6 @@
             android:textSize="24sp"
             android:textStyle="bold"
             app:cornerRadius="5dp" />
-
-
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

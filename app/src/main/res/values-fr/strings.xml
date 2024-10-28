@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DAM-PMDM-FichaPersonal</string>
+    <string name="btn_info1">Prénom</string>
+    <string name="btn_info2">Cours</string>
+    <string name="btn_info3">Langages</string>
+    <string name="btn_clear">Nouvelle Inscription</string>
+    <string name="titleSC">Sélectionnez un cours</string>
+    <string name="OptionSC1">Annuler</string>
+    <string name="OptionSC2">Accepter</string>
+</resources>
