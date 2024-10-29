@@ -7,6 +7,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+
 public class MainActivity extends AppCompatActivity {
     //Creamos una variable para saber que curso se ha seleccionado, si es -1 no aparecerá ninguno seleccionado
     int selectedCourse = -1;
@@ -18,14 +19,32 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.portrait);
 
-        //(findViewById(R.id.btn_info1)).setOnClickListener(v->());
+        (findViewById(R.id.btn_info1)).setOnClickListener(v->elegirNombre());
         (findViewById(R.id.btn_info2)).setOnClickListener(v->elegirCurso());
         (findViewById(R.id.btn_info3)).setOnClickListener(v->elegirLenguaje());
         //(findViewById(R.id.btn_clear)).setOnClickListener(v->());
+        if (savedInstanceState != null) {
+            //String name = savedInstanceState.getString(getString(R.string.btn_info1));
+            String course = savedInstanceState.getString(getString(R.string.btn_info2));
+            String languages = savedInstanceState.getString(getString(R.string.btn_info3));
+
+            //((TextView)findViewById(R.id.lbl_info1)).setText(name);
+            ((TextView)findViewById(R.id.lbl_info2)).setText(course);
+            ((TextView)findViewById(R.id.lbl_info3)).setText(languages);
+        }
 
 
+    }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        //outState.putString(getString(R.string.btn_info1),((TextView)findViewById(R.id.lbl_info1)).getText().toString());
+        outState.putString(getString(R.string.btn_info2),((TextView)findViewById(R.id.lbl_info2)).getText().toString());
+        outState.putString(getString(R.string.btn_info3),((TextView)findViewById(R.id.lbl_info3)).getText().toString());
+    }
 
+    private void elegirNombre() {
     }
 
     private void elegirCurso() {
@@ -35,9 +54,7 @@ public class MainActivity extends AppCompatActivity {
         new AlertDialog.Builder(MainActivity.this)
                .setTitle(R.string.titleSC)
                .setCancelable(false)
-               .setSingleChoiceItems(listItems, selectedCourse, (dialog, which) -> {
-                   selectedCourse = which;
-        })
+               .setSingleChoiceItems(listItems, selectedCourse, (dialog, which) -> selectedCourse = which)
                 .setNegativeButton(R.string.OptionSC1, null)
                 .setPositiveButton(R.string.OptionSC2, (dialog,which)->mostrarCurso(selectedCourse,listItems))
                 .create()
@@ -57,9 +74,7 @@ public class MainActivity extends AppCompatActivity {
         new AlertDialog.Builder(MainActivity.this)
             .setTitle(R.string.titleMC)
                 .setCancelable(false)
-                .setMultiChoiceItems(listItems,checkedItems,(dialog,which,isChecked)->{
-                    checkedItems[which] = isChecked;
-                })
+                .setMultiChoiceItems(listItems,checkedItems,(dialog,which,isChecked)-> checkedItems[which] = isChecked)
                 .setPositiveButton(R.string.Option2MC,(dialog,which)->mostrarLenguaje(checkedItems,listItems))
                 .setNegativeButton(R.string.Option1MC,null)
                 .setNeutralButton(R.string.Optiom3MC,null)
@@ -68,18 +83,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void mostrarLenguaje(boolean[] checkedItems,String[]listItems){
-        String lenguajeSeleccionado = "";
+        StringBuilder lenguajeSeleccionado = new StringBuilder();
         for(int i=0;i<=listItems.length-1;i++){
             if(checkedItems[i]){
-                if(lenguajeSeleccionado.isEmpty()){
-                    lenguajeSeleccionado = listItems[i];
+                if(lenguajeSeleccionado.length() == 0){
+                    lenguajeSeleccionado = new StringBuilder(listItems[i] + "\n");
                 }else{
-                    lenguajeSeleccionado += "\n"+ listItems[i] ;
+                    lenguajeSeleccionado.append(listItems[i]).append("\n");
                 }
 
             }
         }
-        ((TextView)findViewById(R.id.lbl_info3)).setText(lenguajeSeleccionado);
+        ((TextView)findViewById(R.id.lbl_info3)).setText(lenguajeSeleccionado.toString());
     }
 
 }
