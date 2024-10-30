@@ -12,4 +12,10 @@
     <string name="Option1MC">Annuler</string>
     <string name="Option2MC">Accepter</string>
     <string name="Optiom3MC">Nettoie tout</string>
+    <string name="titleCL">Entrez les données</string>
+    <string name="OptiomCL1">Annuler</string>
+    <string name="OptiomCL2">Accepter</string>
+    <string name="txt_name">Prénom</string>
+    <string name="titleAD">Nouvelle inscription</string>
+    <string name="messageAD">Voulez-vous créer un nouvel enregistrement ?</string>
 </resources>

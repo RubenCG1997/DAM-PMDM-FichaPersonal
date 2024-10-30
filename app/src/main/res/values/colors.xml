@@ -5,4 +5,5 @@
     <color name="btn_info">#3F51B5</color>
     <color name="btn_clear">#4CAF50</color>
     <color name="lbl_info">#F44336</color>
+    <color name="txt_color_border">#03A9F4</color>
 </resources>

@@ -1,62 +1,106 @@
 package com.example.dam_pmdm_fichapersonal;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
-
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 
 public class MainActivity extends AppCompatActivity {
     //Creamos una variable para saber que curso se ha seleccionado, si es -1 no aparecerá ninguno seleccionado
     int selectedCourse = -1;
     //Creamos una variable para saber cuantos lenguajes hay selecciados.
-
     boolean[] checkedItems;
+    final String [] listLanguages= new String []{"Java","JavaScript","C#","Kotlin","Python"};
+    final String[] listCourse = new String[]{"DAM","DAW","ASIR"};
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.portrait);
 
+        if (savedInstanceState != null) {
+            String name = savedInstanceState.getString(getString(R.string.btn_info1));
+            String course = savedInstanceState.getString(getString(R.string.btn_info2));
+            String languages = savedInstanceState.getString(getString(R.string.btn_info3));
+            selectedCourse = savedInstanceState.getInt("selectedCourse");
+            checkedItems = savedInstanceState.getBooleanArray("checkedItems");
+
+            ((TextView) findViewById(R.id.lbl_info1)).setText(name);
+            ((TextView) findViewById(R.id.lbl_info2)).setText(course);
+            ((TextView) findViewById(R.id.lbl_info3)).setText(languages);
+        }
+
         (findViewById(R.id.btn_info1)).setOnClickListener(v->elegirNombre());
         (findViewById(R.id.btn_info2)).setOnClickListener(v->elegirCurso());
         (findViewById(R.id.btn_info3)).setOnClickListener(v->elegirLenguaje());
-        //(findViewById(R.id.btn_clear)).setOnClickListener(v->());
-        if (savedInstanceState != null) {
-            //String name = savedInstanceState.getString(getString(R.string.btn_info1));
-            String course = savedInstanceState.getString(getString(R.string.btn_info2));
-            String languages = savedInstanceState.getString(getString(R.string.btn_info3));
-
-            //((TextView)findViewById(R.id.lbl_info1)).setText(name);
-            ((TextView)findViewById(R.id.lbl_info2)).setText(course);
-            ((TextView)findViewById(R.id.lbl_info3)).setText(languages);
-        }
-
+        (findViewById(R.id.btn_clear)).setOnClickListener(v->elegirnuevoRegistro());
 
     }
+
+
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        //outState.putString(getString(R.string.btn_info1),((TextView)findViewById(R.id.lbl_info1)).getText().toString());
+        outState.putString(getString(R.string.btn_info1),((TextView)findViewById(R.id.lbl_info1)).getText().toString());
         outState.putString(getString(R.string.btn_info2),((TextView)findViewById(R.id.lbl_info2)).getText().toString());
         outState.putString(getString(R.string.btn_info3),((TextView)findViewById(R.id.lbl_info3)).getText().toString());
+
+        outState.putInt("selectedCurse",selectedCourse);
+        outState.putBooleanArray("checkedItems",checkedItems);
+
+    }
+    private void elegirnuevoRegistro() {
+
+        new AlertDialog.Builder(MainActivity.this)
+                .setTitle(R.string.titleAD)
+                .setMessage(R.string.messageAD)
+                .setNegativeButton(R.string.OptiomCL1,null)
+                .setPositiveButton(R.string.OptiomCL2,(dialog,which)->clear())
+                .create()
+                .show();
+    }
+    private void cleanLanguages(){
+        checkedItems = new boolean[listLanguages.length];
+        ((TextView)findViewById(R.id.lbl_info3)).setText("");
+    }
+
+    private void clear(){
+        selectedCourse=-1;
+        checkedItems = new boolean[listLanguages.length];
+        ((TextView)findViewById(R.id.lbl_info1)).setText("");
+        ((TextView)findViewById(R.id.lbl_info2)).setText("");
+        ((TextView)findViewById(R.id.lbl_info3)).setText("");
+
     }
 
     private void elegirNombre() {
+        final View customlayout = getLayoutInflater().inflate(R.layout.customlayout,null);
+
+        new AlertDialog.Builder(MainActivity.this)
+                .setTitle(R.string.titleCL)
+                .setView(customlayout)
+                .setNegativeButton(R.string.OptiomCL1,null)
+                .setPositiveButton(R.string.OptiomCL2,(dialog,which)->{
+                    EditText editText = customlayout.findViewById(R.id.txt_name);
+                    String name = editText.getText().toString().trim();
+                    ((TextView)findViewById(R.id.lbl_info1)).setText(name);
+                })
+                .create()
+                .show();
     }
 
     private void elegirCurso() {
 
-        final String[] listItems = new String[]{"DAM","DAW","ASIR"};
-
         new AlertDialog.Builder(MainActivity.this)
                .setTitle(R.string.titleSC)
                .setCancelable(false)
-               .setSingleChoiceItems(listItems, selectedCourse, (dialog, which) -> selectedCourse = which)
+               .setSingleChoiceItems(listCourse, selectedCourse, (dialog, which) -> selectedCourse = which)
                 .setNegativeButton(R.string.OptionSC1, null)
-                .setPositiveButton(R.string.OptionSC2, (dialog,which)->mostrarCurso(selectedCourse,listItems))
+                .setPositiveButton(R.string.OptionSC2, (dialog,which)->mostrarCurso(selectedCourse,listCourse))
                 .create()
                 .show();
     }
@@ -69,27 +113,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void elegirLenguaje(){
-        final String [] listItems= new String []{"Java","JavaScript","C#","Kotlin","Python"};
-        checkedItems = new boolean[listItems.length];
+
+        if (checkedItems==null){
+            checkedItems = new boolean[listLanguages.length];
+        }
         new AlertDialog.Builder(MainActivity.this)
             .setTitle(R.string.titleMC)
                 .setCancelable(false)
-                .setMultiChoiceItems(listItems,checkedItems,(dialog,which,isChecked)-> checkedItems[which] = isChecked)
-                .setPositiveButton(R.string.Option2MC,(dialog,which)->mostrarLenguaje(checkedItems,listItems))
+                .setMultiChoiceItems(listLanguages,checkedItems,(dialog,which,isChecked)-> checkedItems[which] = isChecked)
+                .setPositiveButton(R.string.Option2MC,(dialog,which)->mostrarLenguaje(checkedItems,listLanguages))
                 .setNegativeButton(R.string.Option1MC,null)
-                .setNeutralButton(R.string.Optiom3MC,null)
+                .setNeutralButton(R.string.Optiom3MC,(dialog,which)->cleanLanguages())
                 .create()
                 .show();
     }
 
     private void mostrarLenguaje(boolean[] checkedItems,String[]listItems){
-        StringBuilder lenguajeSeleccionado = new StringBuilder();
+        String lenguajeSeleccionado ="";
         for(int i=0;i<=listItems.length-1;i++){
             if(checkedItems[i]){
-                if(lenguajeSeleccionado.length() == 0){
-                    lenguajeSeleccionado = new StringBuilder(listItems[i] + "\n");
+                if(lenguajeSeleccionado.isEmpty()){
+                    lenguajeSeleccionado = listItems[i] + "\n";
                 }else{
-                    lenguajeSeleccionado.append(listItems[i]).append("\n");
+                    lenguajeSeleccionado += listItems[i] + "\n";
                 }
 
             }

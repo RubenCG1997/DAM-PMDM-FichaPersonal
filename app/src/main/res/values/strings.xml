@@ -11,5 +11,11 @@
     <string name="Option1MC">Cancel</string>
     <string name="Option2MC">Accept</string>
     <string name="Optiom3MC">Clear all</string>
+    <string name="titleCL">Enter Data</string>
+    <string name="OptiomCL1">Cancel</string>
+    <string name="OptiomCL2">Accept</string>
+    <string name="txt_name">Name</string>
+    <string name="titleAD">New Inscription</string>
+    <string name="messageAD">Do you want to create a new registration?</string>
 
 </resources>
