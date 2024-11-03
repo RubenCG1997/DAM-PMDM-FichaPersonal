@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         outState.putString(getString(R.string.btn_info2),((TextView)findViewById(R.id.lbl_info2)).getText().toString());
         outState.putString(getString(R.string.btn_info3),((TextView)findViewById(R.id.lbl_info3)).getText().toString());
 
-        outState.putInt("selectedCurse",selectedCourse);
+        outState.putInt("selectedCourse",selectedCourse);
         outState.putBooleanArray("checkedItems",checkedItems);
 
     }
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void mostrarLenguajesAnteriores() {
         checkedItems = new boolean[listLanguages.length];
-        for (int i =0;i<listLanguages.length-1;i++){
+        for (int i =0;i<=listLanguages.length-1;i++){
             if (beforeCheckeds[i]){
                 checkedItems[i]=beforeCheckeds[i];
             }
@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
         }
         ((TextView)findViewById(R.id.lbl_info3)).setText(lenguajeSeleccionado);
 
-        for (int i =0;i<listItems.length-1;i++){
+        for (int i =0;i<=listItems.length-1;i++){
             if (checkedItems[i]){
                 beforeCheckeds[i]=checkedItems[i];
             }
