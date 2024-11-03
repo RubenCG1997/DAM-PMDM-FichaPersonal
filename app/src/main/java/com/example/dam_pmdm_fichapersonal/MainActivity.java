@@ -9,10 +9,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    //Creamos una variable para saber que curso se ha seleccionado, si es -1 no aparecerá ninguno seleccionado
     int selectedCourse = -1;
-    //Creamos una variable para saber cuantos lenguajes hay selecciados.
+    int beforeSelected = selectedCourse;
     boolean[] checkedItems;
+    boolean[] beforeCheckeds;
     final String [] listLanguages= new String []{"Java","JavaScript","C#","Kotlin","Python"};
     final String[] listCourse = new String[]{"DAM","DAW","ASIR"};
     
@@ -40,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -65,12 +63,15 @@ public class MainActivity extends AppCompatActivity {
     }
     private void cleanLanguages(){
         checkedItems = new boolean[listLanguages.length];
+        beforeCheckeds = new boolean[listLanguages.length];
         ((TextView)findViewById(R.id.lbl_info3)).setText("");
     }
 
     private void clear(){
         selectedCourse=-1;
+        beforeSelected=selectedCourse;
         checkedItems = new boolean[listLanguages.length];
+        beforeCheckeds = new boolean[listLanguages.length];
         ((TextView)findViewById(R.id.lbl_info1)).setText("");
         ((TextView)findViewById(R.id.lbl_info2)).setText("");
         ((TextView)findViewById(R.id.lbl_info3)).setText("");
@@ -99,33 +100,42 @@ public class MainActivity extends AppCompatActivity {
                .setTitle(R.string.titleSC)
                .setCancelable(false)
                .setSingleChoiceItems(listCourse, selectedCourse, (dialog, which) -> selectedCourse = which)
-                .setNegativeButton(R.string.OptionSC1, null)
+                .setNegativeButton(R.string.OptionSC1, (dialog,which)->selectedCourse = beforeSelected)
                 .setPositiveButton(R.string.OptionSC2, (dialog,which)->mostrarCurso(selectedCourse,listCourse))
                 .create()
                 .show();
     }
 
     private void mostrarCurso(int checkedItem,String[] listItems ){
-       if(checkedItem>=0){
            String cursoSeleccionado = listItems[checkedItem];
            ((TextView)findViewById(R.id.lbl_info2)).setText(cursoSeleccionado);
-       }
+           beforeSelected = selectedCourse;
     }
 
     private void elegirLenguaje(){
 
         if (checkedItems==null){
             checkedItems = new boolean[listLanguages.length];
+            beforeCheckeds = new boolean[listLanguages.length];
         }
         new AlertDialog.Builder(MainActivity.this)
             .setTitle(R.string.titleMC)
                 .setCancelable(false)
                 .setMultiChoiceItems(listLanguages,checkedItems,(dialog,which,isChecked)-> checkedItems[which] = isChecked)
                 .setPositiveButton(R.string.Option2MC,(dialog,which)->mostrarLenguaje(checkedItems,listLanguages))
-                .setNegativeButton(R.string.Option1MC,null)
+                .setNegativeButton(R.string.Option1MC,(dialog,which)->mostrarLenguajesAnteriores())
                 .setNeutralButton(R.string.Optiom3MC,(dialog,which)->cleanLanguages())
                 .create()
                 .show();
+    }
+
+    private void mostrarLenguajesAnteriores() {
+        checkedItems = new boolean[listLanguages.length];
+        for (int i =0;i<listLanguages.length-1;i++){
+            if (beforeCheckeds[i]){
+                checkedItems[i]=beforeCheckeds[i];
+            }
+        }
     }
 
     private void mostrarLenguaje(boolean[] checkedItems,String[]listItems){
@@ -140,7 +150,16 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
-        ((TextView)findViewById(R.id.lbl_info3)).setText(lenguajeSeleccionado.toString());
+        ((TextView)findViewById(R.id.lbl_info3)).setText(lenguajeSeleccionado);
+
+        for (int i =0;i<listItems.length-1;i++){
+            if (checkedItems[i]){
+                beforeCheckeds[i]=checkedItems[i];
+            }
+        }
     }
+
+
+
 
 }
