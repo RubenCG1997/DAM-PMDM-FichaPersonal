@@ -107,9 +107,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void mostrarCurso(int checkedItem,String[] listItems ){
-           String cursoSeleccionado = listItems[checkedItem];
-           ((TextView)findViewById(R.id.lbl_info2)).setText(cursoSeleccionado);
-           beforeSelected = selectedCourse;
+        if(checkedItem!=-1){
+            String cursoSeleccionado = listItems[checkedItem];
+            ((TextView)findViewById(R.id.lbl_info2)).setText(cursoSeleccionado);
+            beforeSelected = selectedCourse;
+        }
+
     }
 
     private void elegirLenguaje(){
